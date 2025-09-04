@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: jusups
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: jusups
+  template:
+    metadata:
+      labels:
+        app: jusups
+    spec:
+      containers:
+        - name: app
+          image: almuko/jusups:latest
+          ports:
+            - containerPort: 8001
+          env:
+            - name: PORT
+              value: "8001"                     
+            - name: DATABASE_URL
+              valueFrom:
+                secretKeyRef:
+                  name: jusups-secret
+                  key: database-url
