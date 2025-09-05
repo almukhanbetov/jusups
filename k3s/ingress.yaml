@@ -2,12 +2,12 @@ apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: jusups-ingress
-  namespace: jusups
+  namespace: default
   annotations:
-    kubernetes.io/ingress.class: nginx
+    traefik.ingress.kubernetes.io/router.entrypoints: websecure
     cert-manager.io/cluster-issuer: letsencrypt-prod
-   
 spec:
+  ingressClassName: traefik
   tls:
     - hosts:
         - jusup.uibirzhasi.kz
@@ -22,4 +22,4 @@ spec:
               service:
                 name: jusups
                 port:
-                  number: 80
+                  number: 8001
