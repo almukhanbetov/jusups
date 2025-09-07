@@ -22,4 +22,4 @@ spec:
               service:
                 name: jusups
                 port:
-                  number: 8001
+                  number: 80
